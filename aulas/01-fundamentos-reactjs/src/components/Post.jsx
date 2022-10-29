@@ -19,7 +19,11 @@ export function Post(props) {
         <p>Fala galera</p>
         <p> Acabei de postar um projeto</p>
         <p> <a href="">https://www.google.com </a></p>
-        <p> <a href=""> #projeto #ignite </a></p>
+        <p>
+          <a href=""> #ignite </a>{' '}
+          <a href=""> #projeto  </a>{' '}
+          <a href=""> #rocketseat  </a>
+        </p>
       </div>
     </article>
   )
