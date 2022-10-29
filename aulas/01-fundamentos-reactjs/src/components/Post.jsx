@@ -1,10 +1,9 @@
+import styles from './Post.module.css';
+
 export function Post(props) {
-  console.log(props);
   return (
     <div>
-      <strong>
-        {props.author}
-      </strong>
+      <span>{props.author}</span>
       <p>
         {props.content}
       </p>
