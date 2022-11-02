@@ -8,3 +8,13 @@
   gap:2rem; /*distancia da sidebar para a main */
   align-items:flex-start; /*impede que a sidebar Estique  */
 }
+
+/* media para mobiles*/
+@media(max-width:768px){
+  html{
+    font-size:87.5%;
+  }
+  .wrapper{
+    grid-template-columns:1fr;
+  }
+} 
