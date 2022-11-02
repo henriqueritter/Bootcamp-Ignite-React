@@ -1,31 +1,50 @@
 import { Avatar } from './Avatar';
 import { Comment } from './Comment';
 import styles from './Post.module.css';
+import { format, formatDistanceToNow } from 'date-fns';
+
+import ptBR from 'date-fns/locale/pt-BR';
 
 // author: {avatar_url:"", name:"", role:""}
 // publishedAt: Date, 
 // content: ""
 
 
-export function Post(props) {
+export function Post({ author, content, publishedAt }) {
+  const publishedDateFormatted = format(
+    publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
+    locale: ptBR
+  });
+
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true
+  });
+
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src="https://github.com/henriqueritter.png" />
+          <Avatar src={author.avatarUrl} />
           <div className={styles.authorInfo}>
-            <strong>Henrique Ritter</strong>
-            <span>Web Developer</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
 
-        <time title="29 de outubro às 13:34h" dateTime="2022-10-29 13:34:00">Publicado há 1h</time>
+        <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()}>
+          {publishedDateRelativeToNow}
+        </time>
       </header>
 
       <div className={styles.content}>
-        <p>Fala galera</p>
-        <p> Acabei de postar um projeto</p>
-        <p> <a href="">https://www.google.com </a></p>
+        {content.map(item => {
+          return (
+            item.type === "paragraph" ?
+              <p>{item.content}</p> :
+              <p> <a href="#">{content.content} </a></p>
+          )
+        })}
         <p>
           <a href=""> #ignite </a>{' '}
           <a href=""> #projeto  </a>{' '}
