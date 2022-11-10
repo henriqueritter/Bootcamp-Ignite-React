@@ -1,0 +1,103 @@
+.comment {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.comment>img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 8px;
+}
+
+.commentBox {
+    /* div ocupe o maximo de espaço possivel*/
+    flex: 1;
+}
+
+.commentContent {
+    background: var(--gray-700);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.commentContent header {
+    display: flex;
+    /* alinha os itens no topo do comment header*/
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+
+/*
+.authorAndTime {
+    display: flex;
+    flex-direction: column;
+}*/
+
+.authorAndTime strong {
+    display: block;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.authorAndTime time {
+    display: block;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--gray-400);
+}
+
+.commentContent header button {
+    background: transparent;
+    border: 0;
+    color: var(--gray-400);
+    cursor: pointer;
+    /*Line height utilizado para deixar o botao ocupar apenas o espaço do icone */
+    line-height: 0;
+    /*essa borda arredondada se refere a borda do Focus*/
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.commentContent header button:hover {
+    color: var(--red-500);
+}
+
+.commentContent header button:focus {
+    color: var(--red-500);
+}
+
+.commentContent p {
+    margin-top: 1rem;
+    color: var(--gray-300);
+}
+
+.commentBox footer {
+    margin-top: 1rem;
+}
+
+.commentBox footer button {
+    background: transparent;
+    /*reseta a borda*/
+    border: 0;
+    color: var(--gray-400);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.commentBox footer button:hover {
+    color: var(--green-300);
+}
+
+.commentBox footer button svg {
+    margin-right: 0.5rem;
+}
+
+.commentBox footer button span::before {
+    /*adicion a um 'ponto' antes do numero de curtidas*/
+    content: "\2022";
+    padding: 0 0.25rem;
+}

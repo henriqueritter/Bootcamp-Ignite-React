@@ -1,0 +1,20 @@
+.wrapper {
+  max-width:70rem;
+  margin:2rem auto;
+  padding:0 1rem;  /*se a tela for menor que 70rem, tera um espaçamento de 16px na tela */
+
+  display:grid;
+  grid-template-columns:256px 1fr; /*a sidebar terá 256 ja a main terá largura maxima possível */
+  gap:2rem; /*distancia da sidebar para a main */
+  align-items:flex-start; /*impede que a sidebar Estique  */
+}
+
+/* media para mobiles*/
+@media(max-width:768px){
+  html{
+    font-size:87.5%;
+  }
+  .wrapper{
+    grid-template-columns:1fr;
+  }
+} 
