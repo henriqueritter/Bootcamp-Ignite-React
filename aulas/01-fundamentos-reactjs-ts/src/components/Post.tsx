@@ -4,14 +4,30 @@ import styles from './Post.module.css';
 import { format, formatDistanceToNow } from 'date-fns';
 
 import ptBR from 'date-fns/locale/pt-BR';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
 
 // author: {avatar_url:"", name:"", role:""}
 // publishedAt: Date, 
 // content: ""
 
+interface IPostProps {
+  author: IAuthor;
+  content: IPostContent[];
+  publishedAt: Date;
+}
 
-export function Post({ author, content, publishedAt }) {
+interface IAuthor {
+  name: string;
+  role: string;
+  avatarUrl: string;
+}
+
+interface IPostContent {
+  type: 'paragraph' | 'link';
+  content: string;
+}
+
+export function Post({ author, content, publishedAt }: IPostProps) {
   const [comments, setComments] = useState(['Post muito bacana, hein?!']);
   const [newCommentText, setNewCommentText] = useState('');
 
@@ -25,19 +41,19 @@ export function Post({ author, content, publishedAt }) {
     addSuffix: true
   });
 
-  function handleCreateNewComment() {
+  function handleCreateNewComment(event: FormEvent) {
     event.preventDefault();
 
     setComments([...comments, newCommentText]);
     setNewCommentText(''); //limpa o textArea
   }
 
-  function handleNewCommentChange() {
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('');
     setNewCommentText(event.target.value);
   }
 
-  function deleteComment(commentToDelete) {
+  function deleteComment(commentToDelete: string) {
     const commentsWithoutDeletedOne = comments.filter(comment => {
       return comment !== commentToDelete
     });
@@ -45,7 +61,7 @@ export function Post({ author, content, publishedAt }) {
     setComments(commentsWithoutDeletedOne);
   }
 
-  function handleNewCommentInvalid() {
+  function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('Esse campo é obrigatório');
   }
 
@@ -76,7 +92,7 @@ export function Post({ author, content, publishedAt }) {
             )
           } else if (item.type === "link") {
             return (
-              <p key={item.content} > <a href="#">{content.content} </a></p>
+              <p key={item.content} > <a href="#">{item.content} </a></p>
             )
           }
         })}
