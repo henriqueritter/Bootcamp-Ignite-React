@@ -98,7 +98,7 @@ export function Post({ author, content, publishedAt }: IPostProps) {
         })}
       </div>
 
-      <form onSubmit={() => handleCreateNewComment()} className={styles.commentForm}>
+      <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
 
         <textarea
